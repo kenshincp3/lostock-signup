@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoStock - 申し込み</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-lo">Lo</span><span class="logo-stock">Stock</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="signup-card">
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">アカウント作成</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">施設情報</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">プラン選択</div>
+                </div>
+            </div>
+
+            <!-- Step 1: Account Creation -->
+            <div class="step-content" id="step1">
+                <h1 class="form-title"><span class="logo-lo">Lo</span><span class="logo-stock">Stock</span>のアカウントを作成</h1>
+                <p class="form-subtitle">管理者アカウント情報を入力してください</p>
+                
+                <form class="signup-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="accountName">アカウント名（会社・組織名）<span class="required">*</span></label>
+                        <input type="text" id="accountName" name="accountName" placeholder="例：株式会社サンプル" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="displayName">お名前（表示名）<span class="required">*</span></label>
+                        <input type="text" id="displayName" name="displayName" placeholder="例：山田 太郎" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">メールアドレス<span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="例：info@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">パスワード<span class="required">*</span></label>
+                        <input type="password" id="password" name="password" placeholder="8文字以上で入力してください" required>
+                        <p class="input-hint">英数字を含む8文字以上</p>
+                    </div>
+                    
+                    <button type="button" class="btn-primary" onclick="nextStep(2)">
+                        次へ進む
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Facility Information -->
+            <div class="step-content hidden" id="step2">
+                <h1 class="form-title">施設情報を入力</h1>
+                <p class="form-subtitle">最初に登録する施設の情報を入力してください</p>
+                
+                <form class="signup-form" id="facilityForm">
+                    <div class="form-group">
+                        <label for="facilityName">施設名<span class="required">*</span></label>
+                        <input type="text" id="facilityName" name="facilityName" placeholder="例：グランドホテル東京" required>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" onclick="prevStep(1)">
+                            <svg class="btn-arrow-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            戻る
+                        </button>
+                        <button type="button" class="btn-primary" onclick="nextStep(3)">
+                            次へ進む
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 3: Plan Selection -->
+            <div class="step-content hidden" id="step3">
+                <h1 class="form-title">プランを選択</h1>
+                <p class="form-subtitle">ご利用になるプランを選択してください</p>
+                
+                <div class="plan-cards">
+                    <div class="plan-card" data-plan="light">
+                        <div class="plan-header">
+                            <h3 class="plan-name">ライト</h3>
+                            <div class="plan-price">
+                                <span class="price-amount">¥9,800</span>
+                                <span class="price-period">/月</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li class="feature-included"><span class="check-icon">✓</span>忘れ物登録</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>写真検索</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>一覧管理</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>ステータス管理</li>
+                            <li class="feature-excluded"><span class="dash-icon">−</span>問い合わせフォーム</li>
+                            <li class="feature-excluded"><span class="dash-icon">−</span>自動返信</li>
+                            <li class="feature-excluded"><span class="dash-icon">−</span>自動振り分け補助</li>
+                        </ul>
+                        <button type="button" class="btn-plan" onclick="selectPlan('light')">このプランを選択</button>
+                    </div>
+                    
+                    <div class="plan-card recommended" data-plan="standard">
+                        <div class="recommended-badge">おすすめ</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">スタンダード</h3>
+                            <div class="plan-price">
+                                <span class="price-amount">¥14,800</span>
+                                <span class="price-period">/月</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li class="feature-included"><span class="check-icon">✓</span>忘れ物登録</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>写真検索</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>一覧管理</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>ステータス管理</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>問い合わせフォーム設置</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>自動返信（一次返信）</li>
+                            <li class="feature-excluded"><span class="dash-icon">−</span>自動振り分け補助</li>
+                        </ul>
+                        <button type="button" class="btn-plan btn-plan-primary" onclick="selectPlan('standard')">このプランを選択</button>
+                    </div>
+                    
+                    <div class="plan-card" data-plan="premium">
+                        <div class="plan-header">
+                            <h3 class="plan-name">プレミアム</h3>
+                            <div class="plan-price">
+                                <span class="price-amount">¥19,800</span>
+                                <span class="price-period">/月</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li class="feature-included"><span class="check-icon">✓</span>忘れ物登録</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>写真検索</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>一覧管理</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>ステータス管理</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>問い合わせフォーム設置</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>自動返信（一次返信）</li>
+                            <li class="feature-included"><span class="check-icon">✓</span>自動振り分け補助</li>
+                        </ul>
+                        <button type="button" class="btn-plan" onclick="selectPlan('premium')">このプランを選択</button>
+                    </div>
+                </div>
+                
+                <p class="plan-note">※価格は月額・税別です。年間契約で10%割引。</p>
+                
+                <div class="button-group center">
+                    <button type="button" class="btn-secondary" onclick="prevStep(2)">
+                        <svg class="btn-arrow-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                        戻る
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Confirmation -->
+            <div class="step-content hidden" id="step4">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                    <h1 class="form-title">利用規約への同意</h1>
+                    <p class="form-subtitle">以下の内容をご確認ください</p>
+                    
+                    <div class="summary-box">
+                        <h3>入力内容の確認</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">アカウント名</span>
+                            <span class="summary-value" id="summaryAccountName">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">お名前</span>
+                            <span class="summary-value" id="summaryDisplayName">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">メールアドレス</span>
+                            <span class="summary-value" id="summaryEmail">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">施設名</span>
+                            <span class="summary-value" id="summaryFacilityName">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">選択プラン</span>
+                            <span class="summary-value" id="summaryPlan">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="terms-box">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="termsAgree" name="termsAgree">
+                            <label for="termsAgree">
+                                <a href="#" class="terms-link">利用規約</a>および<a href="#" class="terms-link">プライバシーポリシー</a>に同意します
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" onclick="prevStep(3)">
+                            <svg class="btn-arrow-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            戻る
+                        </button>
+                        <button type="button" class="btn-primary btn-submit" id="submitBtn" onclick="submitForm()" disabled>
+                            申し込みを完了する
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completion -->
+            <div class="step-content hidden" id="complete">
+                <div class="completion-content">
+                    <div class="completion-animation">
+                        <div class="completion-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 12l3 3 5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h1 class="form-title completion-title">申し込みが完了しました！</h1>
+                    <p class="form-subtitle">ご登録いただいたメールアドレスに確認メールを送信しました。<br>メール内のリンクをクリックして、アカウントを有効化してください。</p>
+                    
+                    <div class="completion-info">
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <span>確認メールをお送りしました</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">⏱️</span>
+                            <span>メールが届かない場合は、迷惑メールフォルダをご確認ください</span>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn-primary" onclick="location.reload()">
+                        ログイン画面へ
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 LoStock. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
