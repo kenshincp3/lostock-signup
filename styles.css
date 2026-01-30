@@ -278,8 +278,8 @@ body {
 
 .plan-card {
     border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 20px 16px;
+    border-radius: 16px;
+    padding: 28px 24px;
     position: relative;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -322,7 +322,7 @@ body {
 }
 
 .plan-name {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
     color: #1a1a4e;
     margin-bottom: 8px;
@@ -336,13 +336,13 @@ body {
 }
 
 .price-amount {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     color: #2b7fff;
 }
 
 .price-period {
-    font-size: 13px;
+    font-size: 16px;
     color: #6b7280;
 }
 
@@ -354,10 +354,19 @@ body {
 .plan-features li {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    padding: 6px 0;
+    gap: 10px;
+    font-size: 15px;
+    padding: 10px 0;
     color: #374151;
+}
+
+.plan-description {
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .feature-included .check-icon {
@@ -375,12 +384,12 @@ body {
 
 .btn-plan {
     width: 100%;
-    padding: 10px 16px;
+    padding: 14px 20px;
     background: #ffffff;
     color: #2b7fff;
-    border: 1px solid #2b7fff;
-    border-radius: 6px;
-    font-size: 13px;
+    border: 2px solid #2b7fff;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
